@@ -21,9 +21,21 @@ var express = require("express"),
     });
   });
 
+  app.get("/edit/:student", function(req,res){
+    var student = req.params.student;
+    var year = client.zscore("students", "George Navas");
+    console.log(year);
+    res.render("edit",{student:student, year:year});
+  }); 
+
   app.post("/create", function(req, res){
     console.log(req.body);
     client.zadd("students", req.body.yob, req.body.name);
+    res.redirect('/');
+  });
+
+  app.put("/edit/:student", function(req,res){
+    client.set(req.params.student,req.body.name);
     res.redirect('/');
   });
 
@@ -31,7 +43,12 @@ var express = require("express"),
     client.zremrangebyrank("students",0, -1, function(err, reply){
       res.redirect('/');
     });
+  });
 
+  app.delete("/remove/:student", function(req,res){
+    client.zrem("students",1,req.params.student, function(err, reply){
+      res.redirect('/');
+    });
   });
 
 // kick off server

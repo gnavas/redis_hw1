@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+  <h1>Edit Student Name:</h1>
+   <form method="post" action="/edit/<%= student %>?_method=PUT"  >
+    <p>
+      <label for="name">Student name: </label>
+      <input type="text" id="name" name="name" value = "<%= student %>"><br><br>
+      <label for="yob">Student Year of Birth: </label>
+      <input type="text" id="yob" name="yob" value = <%= year %>><br><br>
+      <input type="submit" value="Edit Student"> 
+    </p>
+  </form>
+</div>
+</body>
+</html>
+

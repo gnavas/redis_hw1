@@ -7,21 +7,40 @@
 <body>
   <div>
     <h1>Student Name/Year of Birth</h1>
-<ul><% students.forEach(function(student){ %>
-  <li><%= student %></li>
-  <% }) %></ul>
-  <form method="post" action="/remove/students?_method=DELETE" >
-    <p>
-    <input type="submit" value="Remove all students!"> 
-    </p>
- </form>
- </p>
+    <table>
+      <% students.forEach(function(student){ %>
+      <tr>  
+        <td>
+          <p><%= student %>
+          </p>
+        </td>
+        <td>
+          <p>
+            <form method="post"action="/remove/<%=student%>?_method=DELETE">
+              <input type="submit" value="X"> 
+            </form>
+          </p>
+         </td>   
+         <td>
+          <p>
+           <a href="/edit/<%=student%>">Edit</a> 
+          </p>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+    <form method="post" action="/remove/students?_method=DELETE" >
+      <p>
+        <input type="submit" value="Remove all students!"> 
+      </p>
+    </form>
+  </p>
 
-  </div>
+</div>
 
-  <div>
+<div>
   <h1>Add Student:</h1>
-   <form action="/create" method="post">
+  <form action="/create" method="post">
     <p>
       <label for="name">Student name: </label>
       <input type="text" id="name" name="name"><br><br>
